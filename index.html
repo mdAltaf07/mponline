@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Bus List</title>
+<title>Bus System</title>
 
 <style>
 table{
@@ -16,6 +16,10 @@ text-align:center;
 }
 th{
 background:#ddd;
+}
+form{
+width:80%;
+margin:20px auto;
 }
 </style>
 
@@ -35,19 +39,40 @@ background:#ddd;
 </tr>
 </table>
 
+<hr>
+
+<h2 align="center">Add Bus</h2>
+
+<form id="busForm">
+    Bus Code: <input type="text" name="bus_code" required><br><br>
+    Route Name: <input type="text" name="route_name" required><br><br>
+    Latitude: <input type="number" step="any" name="latitude"><br><br>
+    Longitude: <input type="number" step="any" name="longitude"><br><br>
+
+    <button type="submit">Save</button>
+</form>
+
+<p id="msg" align="center"></p>
+
 <script>
 
+function loadBus(){
+
 fetch("https://mosam.store/drive/get_buses.php")
-.then(response => response.text())
-.then(text => {
-
-console.log("RAW =", text)
-
-let data = JSON.parse(text)
-
-console.log("JSON =", data)
+.then(res => res.json())
+.then(data => {
 
 let table = document.getElementById("busTable");
+
+table.innerHTML = `
+<tr>
+<th>ID</th>
+<th>Bus Code</th>
+<th>Route Name</th>
+<th>Latitude</th>
+<th>Longitude</th>
+<th>Status</th>
+</tr>`;
 
 data.forEach(bus => {
 
@@ -62,36 +87,12 @@ row.insertCell(5).innerHTML = bus.status;
 
 });
 
-})
-.catch(err=>{
-console.log("ERROR =", err)
-})
+});
 
-</script>
+}
 
-</body>
-</html>
-<!DOCTYPE html>
-<html>
-<head>
-<title>Add Bus</title>
-</head>
-<body>
+loadBus();
 
-<h2>Add Bus</h2>
-
-<form id="busForm">
-    Bus Code: <input type="text" name="bus_code" required><br><br>
-    Route Name: <input type="text" name="route_name" required><br><br>
-    Latitude: <input type="number" step="any" name="latitude"><br><br>
-    Longitude: <input type="number" step="any" name="longitude"><br><br>
-
-    <button type="submit">Save</button>
-</form>
-
-<p id="msg"></p>
-
-<script>
 document.getElementById("busForm").addEventListener("submit", function(e){
     e.preventDefault();
 
@@ -104,12 +105,12 @@ document.getElementById("busForm").addEventListener("submit", function(e){
     .then(res=>res.json())
     .then(data=>{
         document.getElementById("msg").innerHTML = data.message;
-    })
-    .catch(err=>{
-        console.log(err);
-    });
 
+        loadBus(); // ✅ refresh table
+        this.reset(); // clear form
+    });
 });
+
 </script>
 
 </body>
