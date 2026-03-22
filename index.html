@@ -71,3 +71,46 @@ console.log("ERROR =", err)
 
 </body>
 </html>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Add Bus</title>
+</head>
+<body>
+
+<h2>Add Bus</h2>
+
+<form id="busForm">
+    Bus Code: <input type="text" name="bus_code" required><br><br>
+    Route Name: <input type="text" name="route_name" required><br><br>
+    Latitude: <input type="number" step="any" name="latitude"><br><br>
+    Longitude: <input type="number" step="any" name="longitude"><br><br>
+
+    <button type="submit">Save</button>
+</form>
+
+<p id="msg"></p>
+
+<script>
+document.getElementById("busForm").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    let formData = new FormData(this);
+
+    fetch("https://mosam.store/drive/add_bus.php",{
+        method:"POST",
+        body: formData
+    })
+    .then(res=>res.json())
+    .then(data=>{
+        document.getElementById("msg").innerHTML = data.message;
+    })
+    .catch(err=>{
+        console.log(err);
+    });
+
+});
+</script>
+
+</body>
+</html>
