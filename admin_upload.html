@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Upload Document</title>
+</head>
+<body>
+
+<h2>Upload Document</h2>
+
+<form id="docForm">
+
+English Name:<br>
+<input type="text" name="document_name"><br><br>
+
+Hindi Name:<br>
+<input type="text" name="hindi_name"><br><br>
+
+Required Documents:<br>
+<textarea name="required_documents"></textarea><br><br>
+
+Upload File:<br>
+<input type="file" name="form_file"><br><br>
+
+<button>Upload</button>
+
+</form>
+
+<p id="msg"></p>
+
+<script>
+
+if(localStorage.getItem("adminLogin")!="yes"){
+window.location="admin_login.html";
+}
+
+document.getElementById("docForm").addEventListener("submit",function(e){
+
+e.preventDefault();
+
+let formData = new FormData(this);
+
+fetch("https://mosam.store/drive/upload_document.php",{
+method:"POST",
+body:formData
+})
+.then(res=>res.json())
+.then(data=>{
+document.getElementById("msg").innerHTML=data.message;
+this.reset();
+});
+
+});
+
+</script>
+
+</body>
+</html>
