@@ -1,117 +1,491 @@
 <!DOCTYPE html>
-<html>
+<html lang="hi">
 <head>
-<title>Bus System</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEEPAK SAHU MPONLINE SHOP | JSRC Pawai</title>
+
+    <meta name="description" content="दीपक साहू की एम.पी.ऑनलाइन दुकान (जय श्री राम कंप्यूटर), तहसील परिषद पवई। यहाँ आय, जाति, निवास, समग्र आई.डी., आयुष्मान कार्ड और सभी प्रकार के दस्तावेज़ बनाए जाते हैं।">
+    <meta name="keywords" content="deepak sahu mponline, jay shri ram computer pawai, mponline pawai, panna mponline, aay praman patra, jaati praman patra, niwas praman patra, samagra id, ayushman card, sarkari dastavej pawai, JSRC,deepak pawai,deepak tahsheel,tahsheel pawai,deepakpawai,deepak sahu,depak pawai,dipak pawai,pawai mponline,depak mponline,dipak mponilne pawai,dipak mponline">
+    <meta name="author" content="Deepak Sahu, JSRC Pawai">
+
+    <meta property="og:title" content="DEEPAK SAHU MPONLINE SHOP - JSRC Pawai">
+    <meta property="og:description" content="पवई में सभी प्रकार के सरकारी दस्तावेज़ों के लिए संपर्क करें - आय, जाति, निवास, और भी बहुत कुछ।">
+    <meta property="og:image" content="Gemini_Generated_Image_ncq5cbncq5cbncq5.png"> 
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
-table{
-border-collapse: collapse;
-width:80%;
-margin:auto;
+    footer a{
+  color: blue;
 }
-th,td{
-border:1px solid black;
-padding:8px;
-text-align:center;
+    /* IMAGE MODAL STYLE */
+.img-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  justify-content: center;
+  align-items: center;
 }
-th{
-background:#ddd;
-}
-form{
-width:80%;
-margin:20px auto;
-}
-</style>
 
+.img-modal img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+  animation: zoomIn 0.3s ease;
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  color: #fff;
+  font-size: 32px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+  :root {
+    --primary-blue: #0a4c9a;
+    --light-gray: #f4f7f6;
+    --text-dark: #212529;
+    --text-light: #555;
+    --border-color: #e0e0e0;
+  }
+
+  body {
+    font-family: 'Inter', Arial, sans-serif;
+    background: var(--light-gray);
+    margin: 0;
+    padding: 0;
+    color: var(--text-dark);
+  }
+
+  /* ---------- HEADER ---------- */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--primary-blue);
+    color: white;
+    padding: 12px 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  header img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+    flex-shrink: 0; /* Don't let image shrink */
+  }
+
+  header h1 {
+    font-size: 1.3rem;
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+    line-height: 1.2; /* Compact line height */
+  }
+  
+  header h6 {
+    margin: 0;
+    line-height: 1.2;
+    font-size: 0.9rem;
+    font-weight: 400;
+    opacity: 0.8;
+  }
+  
+  .header-titles {
+    /* To contain H1 and H6, enabling them to stack correctly */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  /* === फॉर्म बटन स्टाइल === */
+  .forms-header-button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+  
+  .forms-header-button i {
+    font-size: 1.1rem;
+  }
+
+  .forms-header-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+  }
+
+  .whatsapp-icon {
+    color: white;
+    font-size: 1.8rem;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+    display: flex; 
+    align-items: center;
+  }
+
+  .whatsapp-icon:hover {
+    transform: scale(1.15);
+  }
+
+  /* ---------- MAIN CONTENT ---------- */
+  main {
+    max-width: 600px;
+    margin: 35px auto;
+    padding: 0 15px;
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: var(--primary-blue);
+    font-weight: 600;
+  }
+
+  .search-box {
+    position: relative;
+    margin-bottom: 25px;
+  }
+
+  .search-box input {
+    width: 100%;
+    padding: 12px 20px;
+    border-radius: 25px;
+    border: 1px solid var(--border-color);
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .search-box input:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(10, 76, 154, 0.1);
+  }
+
+  .service-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 25px; 
+  }
+
+  .service-item {
+    background: white;
+    border-radius: 8px;
+    padding: 14px 20px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--text-dark);
+  }
+
+  .service-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+
+  .service-item b {
+    color: var(--primary-blue);
+    min-width: 20px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    text-align: center;
+    padding: 30px 15px;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    border-top: 1px solid var(--border-color);
+    margin-top: 40px;
+  }
+  
+    .contact-details {
+    margin-bottom: 20px;
+  }
+
+  .contact-details p {
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    font-weight: 500;
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .contact-details p i {
+    color: var(--primary-blue);
+    font-size: 1.1rem;
+  }
+
+  .copyright-text {
+    margin: 0;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+  }
+
+  /* ======================================= */
+  /* ---------- MOBILE LAYOUT FIXES ---------- */
+  /* ======================================= */
+  @media (max-width: 480px) {
+    header {
+      /* Main content stacked vertically */
+      flex-direction: column;
+      align-items: flex-start; /* Left-align everything */
+      padding: 12px 16px;
+      gap: 10px; /* Reduced vertical gap between header-left and header-right */
+    }
+
+    .header-left {
+      /* FIX 1: Make Image and Text content flow horizontally */
+      flex-direction: row; 
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 5px; /* Small separation from buttons */
+    }
+
+    header img {
+      width: 40px; /* Slightly smaller image on mobile */
+      height: 40px;
+    }
+    
+    header h1 {
+      /* FIX 2: Smaller and more compact H1 */
+      font-size: 1.1rem; 
+      margin: 0;
+    }
+
+    header h6 {
+      /* FIX 2: Smaller and more compact H6 */
+      font-size: 0.8rem;
+      margin: 0;
+      opacity: 0.9;
+    }
+    
+    .header-right {
+        /* FIX 3: Remove excessive vertical margin, rely on 'header' gap */
+        margin-top: 0; 
+        justify-content: flex-start; /* Align buttons to the left */
+        width: 100%;
+        gap: 10px; /* Smaller gap between the two buttons */
+    }
+    
+    .forms-header-button {
+        padding: 6px 10px; /* Smaller button on mobile */
+        font-size: 0.9rem;
+    }
+
+    .whatsapp-icon {
+      font-size: 1.5rem;
+    }
+  }
+
+</style>
 </head>
 <body>
 
-<h2 align="center">Bus List</h2>
+<header>
+  <div class="header-left">
+    <img 
+  src="Screenshot 2025-10-25 at 19.44.03.png" 
+  alt="Profile"
+  id="profileImg"
+  style="cursor:pointer;"
+>
+    <!-- H1 and H6 are wrapped in a div to manage their layout better -->
+    <div class="header-titles">
+      <h1>JAY SHRI RAM COMPUTER</h1>
+      <h6>deepak mponline pawai</h6>
+    </div>
+  </div>
 
-<table id="busTable">
-<tr>
-<th>ID</th>
-<th>Bus Code</th>
-<th>Route Name</th>
-<th>Latitude</th>
-<th>Longitude</th>
-<th>Status</th>
-</tr>
-</table>
+  <div class="header-right">
+      <a href="admin_login.html" class="forms-header-button" title="Admin Login">
+  <i class="bi bi-person-lock"></i>
+  <span>Admin</span>
+</a>
+    <a href="forms/forms.html" class="forms-header-button" title="उपलब्ध फॉर्म देखें">
+      <i class="bi bi-file-earmark-text-fill"></i>
+      <span>👆 उपलब्ध फॉर्म(Forms)</span>
+    </a>
+    
+    <a href="https://wa.me/918839142440?text=Hi%20Deepak" 
+       class="whatsapp-icon" 
+       target="_blank" 
+       title="Contact on WhatsApp">
+      <i class="bi bi-whatsapp"></i>
+    </a>
+  </div>
+</header>
 
-<hr>
+<main>
+  
+  <h2>Available Document Services</h2>
 
-<h2 align="center">Add Bus</h2>
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="सेवा खोजें (जैसे: आय, जाति, आधार...)">
+  </div>
+  
+  <div class="service-list" id="serviceList"></div>
 
-<form id="busForm">
-    Bus Code: <input type="text" name="bus_code" required><br><br>
-    Route Name: <input type="text" name="route_name" required><br><br>
-    Latitude: <input type="number" step="any" name="latitude"><br><br>
-    Longitude: <input type="number" step="any" name="longitude"><br><br>
+  </main>
 
-    <button type="submit">Save</button>
-</form>
+<footer>
+  <div class="contact-details">
+    <p><i class="bi bi-telephone-fill"></i> +91 8839142440</p>
+    <p><i class="bi bi-geo-alt-fill"></i> Tahsheel Parishad Pawai, 488446</p>
+  </div>
 
-<p id="msg" align="center"></p>
-
+  <p class="copyright-text">
+    © <span id="year"></span> JSRC. All Rights Reserved.
+  </p>
+  <a href="https://mdaltaf07.github.io/profile/" target="_blank" rel="noopener">
+   Contact Developer 👆/ डेवलपर से संपर्क करें👆
+  </a>
+</footer>
 <script>
 
-function loadBus(){
+const listContainer = document.getElementById('serviceList');
+const searchInput = document.getElementById('searchInput');
 
-fetch("https://mosam.store/drive/get_buses.php")
-.then(res => res.json())
-.then(data => {
+let allDocs = [];
 
-let table = document.getElementById("busTable");
+function loadDocs(){
 
-table.innerHTML = `
-<tr>
-<th>ID</th>
-<th>Bus Code</th>
-<th>Route Name</th>
-<th>Latitude</th>
-<th>Longitude</th>
-<th>Status</th>
-</tr>`;
-
-data.forEach(bus => {
-
-let row = table.insertRow();
-
-row.insertCell(0).innerHTML = bus.id;
-row.insertCell(1).innerHTML = bus.bus_code;
-row.insertCell(2).innerHTML = bus.route_name;
-row.insertCell(3).innerHTML = bus.last_latitude;
-row.insertCell(4).innerHTML = bus.last_longitude;
-row.insertCell(5).innerHTML = bus.status;
-
+fetch("https://mosam.store/mponline/get_documents.php")
+.then(res=>res.json())
+.then(data=>{
+allDocs = data;
+renderList(data);
 });
+
+}
+
+function renderList(data){
+
+listContainer.innerHTML = "";
+
+if(data.length==0){
+listContainer.innerHTML = `<div class='service-item'>कोई सेवा नहीं मिली</div>`;
+return;
+}
+
+data.forEach((doc,index)=>{
+
+const div = document.createElement('div');
+div.className = 'service-item';
+
+div.innerHTML = `<b>${index+1}.</b> ${doc.hindi_name} (${doc.document_name})`;
+
+div.onclick = ()=>showDetail(doc);
+
+listContainer.appendChild(div);
 
 });
 
 }
 
-loadBus();
+function showDetail(doc){
 
-document.getElementById("busForm").addEventListener("submit", function(e){
-    e.preventDefault();
+let html = `
+<div class="service-item" style="flex-direction:column;align-items:flex-start">
 
-    let formData = new FormData(this);
+<h3>${doc.hindi_name}</h3>
 
-    fetch("https://mosam.store/drive/add_bus.php",{
-        method:"POST",
-        body: formData
-    })
-    .then(res=>res.json())
-    .then(data=>{
-        document.getElementById("msg").innerHTML = data.message;
+<p><b>आवश्यक दस्तावेज:</b><br>
+${doc.required_documents ? doc.required_documents : "जानकारी उपलब्ध नहीं"}
+</p>
+`;
 
-        loadBus(); // ✅ refresh table
-        this.reset(); // clear form
-    });
+if(doc.form_file){
+
+html += `
+<a href="https://mosam.store/mponline/files/${doc.form_file}" target="_blank">
+<button style="margin-top:10px">Download Form</button>
+</a>
+
+<button onclick="window.print()" style="margin-top:10px">Print</button>
+`;
+}
+
+html += `<button onclick="loadDocs()" style="margin-top:10px">⬅ Back</button></div>`;
+
+listContainer.innerHTML = html;
+
+}
+
+searchInput.addEventListener("input",()=>{
+
+let term = searchInput.value.toLowerCase();
+
+let filtered = allDocs.filter(doc =>
+doc.document_name.toLowerCase().includes(term) ||
+doc.hindi_name.toLowerCase().includes(term)
+);
+
+renderList(filtered);
+
 });
 
-</script>
+loadDocs();
 
+</script>
+    <!-- IMAGE MODAL -->
+<div id="imgModal" class="img-modal">
+  <span class="close-btn">&times;</span>
+  <img class="modal-content" id="modalImg">
+</div>
 </body>
 </html>
