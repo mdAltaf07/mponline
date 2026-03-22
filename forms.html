@@ -176,8 +176,32 @@ footer{text-align:center;padding:25px 10px;border-top:1px solid var(--border);fo
 </div>
 
 
+ 
  <script>
 
+const list = document.getElementById("formList");
+const input = document.getElementById("searchInput");
+
+let allForms = [];
+
+// ✅ LOAD DATA FROM API
+function loadForms(){
+
+fetch("https://mosam.store/mponline/get_forms.php")
+.then(res => res.json())
+.then(data => {
+
+allForms = data;
+render(data);
+
+})
+.catch(err=>{
+console.log("Error:",err);
+});
+
+}
+
+// ✅ RENDER FUNCTION
 function render(data){
 
 list.innerHTML="";
@@ -191,14 +215,15 @@ data.forEach(doc=>{
 
 list.innerHTML += `
 <div class="form-item">
+
 <div class="form-name">
 <i class="bi bi-file-earmark-pdf-fill"></i>
 
 <div>
-<b>${doc.hindi_name}</b><br>
-<span style="font-size:13px;color:#666">
+<div style="font-weight:600">${doc.hindi_name}</div>
+<div style="font-size:13px;color:#666">
 ${doc.document_name}
-</span>
+</div>
 </div>
 
 </div>
@@ -210,12 +235,43 @@ class="download-btn" target="_blank">Download</a>
 <button class="print-btn"
 onclick="printFile('${doc.form_file}')">Print</button>
 </div>
+
 </div>
 `;
 
 });
 
 }
+
+// ✅ PRINT FUNCTION
+function printFile(file){
+
+let url = "https://mosam.store/mponline/files/"+file;
+
+let w = window.open(url);
+
+w.onload = ()=>{
+w.print();
+};
+
+}
+
+// ✅ SEARCH
+input.addEventListener("input",()=>{
+
+let t = input.value.toLowerCase();
+
+let filtered = allForms.filter(x =>
+x.hindi_name.toLowerCase().includes(t) ||
+x.document_name.toLowerCase().includes(t)
+);
+
+render(filtered);
+
+});
+
+// ✅ LOAD FIRST TIME
+loadForms();
 
 </script>
 </body>
