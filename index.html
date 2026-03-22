@@ -36,8 +36,11 @@ background:#ddd;
 </table>
 
 <script>
-fetch("https://mosam.store/drive/get_buses.php")
-.then(res => res.json())
+fetch("https://mosam.store/drive/get_buses.php",{
+method:"GET",
+mode:"cors"
+})
+.then(response => response.json())
 .then(data => {
 
 let table = document.getElementById("busTable");
@@ -55,7 +58,10 @@ row.insertCell(5).innerHTML = bus.status;
 
 });
 
-});
+})
+.catch(err=>{
+console.log(err)
+})
 </script>
 
 </body>
