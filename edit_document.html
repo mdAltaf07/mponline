@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DEEPAK SAHU MPONLINE SHOP</title>
+
+<style>
+
+body{font-family:Arial;margin:0;background:#f4f7f6}
+
+header{background:#0a4c9a;color:white;padding:12px}
+
+.container{
+max-width:900px;
+margin:30px auto;
+background:white;
+padding:20px;
+border-radius:10px;
+}
+
+.doc{
+border:1px solid #ddd;
+padding:15px;
+margin-bottom:15px;
+border-radius:8px;
+}
+
+input,textarea{
+width:100%;
+padding:8px;
+margin-top:5px;
+}
+
+button{
+background:#0a4c9a;
+color:white;
+padding:10px;
+border:none;
+margin-top:10px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+<body>
+
+<header>
+<h2>JAY SHRI RAM COMPUTER</h2>
+</header>
+
+<div class="container">
+
+<h3>Edit Documents</h3>
+
+<div id="list"></div>
+
+<p id="msg"></p>
+
+</div>
+
+<script>
+
+function loadDocs(){
+
+fetch("https://mosam.store/mponline/get_all_documents.php",{
+credentials:"include"
+})
+.then(r=>r.json())
+.then(data=>{
+
+if(data.message=="Unauthorized"){
+location="admin_login.html";
+return;
+}
+
+let html="";
+
+data.forEach(d=>{
+
+html+=`
+<form class="doc" onsubmit="updateDoc(event,this)">
+
+<input type="hidden" name="id" value="${d.id}">
+
+English Name
+<input name="document_name" value="${d.document_name}">
+
+Hindi Name
+<input name="hindi_name" value="${d.hindi_name}">
+
+Required Documents
+<textarea name="required_documents">${d.required_documents||""}</textarea>
+
+Change File
+<input type="file" name="form_file">
+
+<button>Update</button>
+
+</form>
+`;
+
+});
+
+document.getElementById("list").innerHTML=html;
+
+});
+
+}
+
+function updateDoc(e,form){
+
+e.preventDefault();
+
+let fd = new FormData(form);
+
+fetch("https://mosam.store/mponline/update_document.php",{
+method:"POST",
+body:fd,
+credentials:"include"
+})
+.then(r=>r.json())
+.then(d=>{
+document.getElementById("msg").innerHTML=d.message;
+});
+
+}
+
+loadDocs();
+
+</script>
+
+</body>
+</html>
